@@ -110,28 +110,28 @@ export default function Home() {
       {/* Quick Stats */}
       <section className="px-6 py-4">
         <div className="grid grid-cols-3 gap-3">
-          <Card className="bg-primary/10 border-primary/20">
+          <Card className="bg-[hsl(var(--muted))] border-primary/20">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-primary">
                 {dashboardStats?.workoutsThisWeek || 0}
               </div>
-              <div className="text-xs text-gray-600 dark:text-muted-foreground mt-1">Workouts</div>
+              <div className="text-xs text-[hsl(var(--muted-foreground))] dark:text-muted-foreground mt-1">Workouts</div>
             </CardContent>
           </Card>
-          <Card className="bg-secondary/10 border-secondary/20">
+          <Card className="bg-[hsl(var(--muted))] border-secondary/20">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-secondary">
+              <div className="text-2xl font-bold text-primary">
                 {dashboardStats?.currentStreak || 0}
               </div>
-              <div className="text-xs text-gray-600 dark:text-muted-foreground mt-1">Day Streak</div>
+              <div className="text-xs text-[hsl(var(--muted-foreground))] dark:text-muted-foreground mt-1">Day Streak</div>
             </CardContent>
           </Card>
-          <Card className="bg-accent/10 border-accent/20">
+          <Card className="bg-[hsl(var(--muted))] border-accent/20">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-accent">
+              <div className="text-2xl font-bold text-primary">
                 {dashboardStats?.totalTime || "0h"}
               </div>
-              <div className="text-xs text-gray-600 dark:text-muted-foreground mt-1">This Week</div>
+              <div className="text-xs text-[hsl(var(--muted-foreground))] dark:text-muted-foreground mt-1">This Week</div>
             </CardContent>
           </Card>
         </div>
@@ -210,7 +210,7 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="font-medium text-gray-800 dark:text-foreground">Push Day</div>
-                    <div className="text-sm text-gray-600 dark:text-muted-foreground">Yesterday • 52 min</div>
+                    <div className="text-sm text-[hsl(var(--muted-foreground))] dark:text-muted-foreground">Yesterday • 52 min</div>
                   </div>
                 </div>
                 <Button variant="ghost" size="icon" className="text-primary">
@@ -219,17 +219,16 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
-          
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
-                    <Activity className="w-6 h-6 text-secondary" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Activity className="w-6 h-6 text-black" />
                   </div>
                   <div>
                     <div className="font-medium text-gray-800 dark:text-foreground">Leg Day</div>
-                    <div className="text-sm text-gray-600 dark:text-muted-foreground">2 days ago • 48 min</div>
+                    <div className="text-sm text-[hsl(var(--muted-foreground))] dark:text-muted-foreground">2 days ago • 48 min</div>
                   </div>
                 </div>
                 <Button variant="ghost" size="icon" className="text-primary">
@@ -280,7 +279,7 @@ export default function Home() {
               {personalRecords.map((record) => (
                 <div key={record.exercise} className="flex items-center justify-between">
                   <span className="text-gray-700 dark:text-muted-foreground">{record.exercise}</span>
-                  <Badge variant="outline" className={`${record.color} border-current`}>
+                  <Badge variant="outline" className="text-primary border-current">
                     {record.weight}
                   </Badge>
                 </div>
@@ -313,11 +312,11 @@ export default function Home() {
                 <div className="text-xs text-gray-600 dark:text-muted-foreground">Calories</div>
               </div>
               <div>
-                <div className="text-xl font-bold text-secondary">95g</div>
+                <div className="text-xl font-bold text-gray-800 dark:text-foreground">95g</div>
                 <div className="text-xs text-gray-600 dark:text-muted-foreground">Protein</div>
               </div>
               <div>
-                <div className="text-xl font-bold text-accent">2.1L</div>
+                <div className="text-xl font-bold text-gray-800 dark:text-foreground">2.1L</div>
                 <div className="text-xs text-gray-600 dark:text-muted-foreground">Water</div>
               </div>
             </div>
