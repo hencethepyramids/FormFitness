@@ -8,9 +8,9 @@ import {
 } from "lucide-react";
 
 const navigationItems = [
-  { path: "/", icon: Home, label: "Home" },
   { path: "/workouts", icon: Dumbbell, label: "Workouts" },
   { path: "/progress", icon: TrendingUp, label: "Progress" },
+  { path: "/", icon: Home, label: "Home" },
   { path: "/nutrition", icon: Apple, label: "Nutrition" },
   { path: "/profile", icon: User, label: "Profile" },
 ];

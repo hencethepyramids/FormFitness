@@ -101,18 +101,18 @@ export default function ProgressPage() {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-2 gap-3">
-              <Card className="bg-primary/5 border-primary/20">
+              <Card className="bg-[hsl(var(--muted))] border-primary/20">
                 <CardContent className="p-4 text-center">
                   <Flame className="w-8 h-8 text-primary mx-auto mb-2" />
                   <div className="text-2xl font-bold text-primary">{dashboardStats?.currentStreak || 5}</div>
-                  <div className="text-xs text-gray-600 dark:text-muted-foreground">Day Streak</div>
+                  <div className="text-xs text-[hsl(var(--muted-foreground))] dark:text-muted-foreground">Day Streak</div>
                 </CardContent>
               </Card>
-              <Card className="bg-secondary/5 border-secondary/20">
+              <Card className="bg-[hsl(var(--muted))] border-secondary/20">
                 <CardContent className="p-4 text-center">
-                  <BarChart3 className="w-8 h-8 text-secondary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-secondary">{monthlyStats.totalWorkouts}</div>
-                  <div className="text-xs text-gray-600 dark:text-muted-foreground">This Month</div>
+                  <BarChart3 className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-primary">{monthlyStats.totalWorkouts}</div>
+                  <div className="text-xs text-[hsl(var(--muted-foreground))] dark:text-muted-foreground">This Month</div>
                 </CardContent>
               </Card>
             </div>
