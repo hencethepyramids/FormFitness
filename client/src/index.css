@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 20% 98%; /* #F9FAFB */
+  --foreground: 222 40% 11%; /* #111827 */
+  --card: 0 0% 100%; /* #FFFFFF */
+  --card-foreground: 222 40% 11%; /* #111827 */
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 222 40% 11%; /* #111827 */
+  --primary: 222 47% 11%; /* #0F172A */
+  --primary-foreground: 210 40% 98%; /* #F8FAFC */
+  --secondary: 210 40% 96.1%; /* #F1F5F9 */
+  --secondary-foreground: 222 47% 11%; /* #0F172A */
+  --muted: 210 40% 96.1%; /* #F1F5F9 */
+  --muted-foreground: 215 20.2% 65.1%; /* #64748B */
+  --accent: 210 40% 96.1%; /* #F1F5F9 */
+  --accent-foreground: 222 47% 11%; /* #0F172A */
+  --destructive: 0 84.2% 60.2%; /* #EF4444 */
+  --destructive-foreground: 210 40% 98%; /* #F8FAFC */
+  --border: 214.3 31.8% 91.4%; /* #E5E7EB */
+  --input: 214.3 31.8% 91.4%; /* #E5E7EB */
+  --ring: 222.2 84% 4.9%; /* #0F172A */
+  --radius: 0.5rem;
+
+  /* Sidebar variables */
+  --sidebar-background: 0 0% 100%; /* #FFFFFF */
+  --sidebar-foreground: 222 40% 11%; /* #111827 */
+  --sidebar-primary: 217 91% 60%; /* #3B82F6 */
+  --sidebar-primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --sidebar-accent: 210 20% 98%; /* #F9FAFB */
+  --sidebar-accent-foreground: 222 40% 11%; /* #111827 */
+  --sidebar-border: 215 19% 84%; /* #D1D5DB */
+  --sidebar-ring: 217 91% 60%; /* #3B82F6 */
+
+  /* Chart colors */
+  --chart-1: 217 91% 60%; /* #3B82F6 */
+  --chart-2: 158 76% 39%; /* #10B981 */
+  --chart-3: 0 84% 60%; /* #EF4444 */
+  --chart-4: 38 92% 50%; /* #F59E0B */
+  --chart-5: 262 83% 66%; /* #8B5CF6 */
+}
+
+.dark {
+  --background: 220 27% 17%; /* #1F2937 */
+  --foreground: 210 20% 98%; /* #F9FAFB */
+  --muted: 220 6% 65%; /* #9CA3AF */
+  --muted-foreground: 220 6% 65%; /* #9CA3AF */
+  --popover: 222 40% 11%; /* #111827 */
+  --popover-foreground: 210 20% 98%; /* #F9FAFB */
+  --card: 222 40% 11%; /* #111827 */
+  --card-foreground: 210 20% 98%; /* #F9FAFB */
+  --border: 220 9% 34%; /* #4B5563 */
+  --input: 215 19% 27%; /* #374151 */
+  --primary: 213 94% 68%; /* #60A5FA */
+  --primary-foreground: 222 40% 11%; /* #111827 */
+  --secondary: 217 91% 60%; /* #3B82F6 */
+  --secondary-foreground: 210 20% 98%; /* #F9FAFB */
+  --accent: 213 94% 68%; /* #60A5FA */
+  --accent-foreground: 222 40% 11%; /* #111827 */
+  --destructive: 0 84% 60%; /* #EF4444 */
+  --destructive-foreground: 210 20% 98%; /* #F9FAFB */
+  --ring: 213 94% 68%; /* #60A5FA */
+
+  /* Sidebar variables for dark mode */
+  --sidebar-background: 222 40% 11%; /* #111827 */
+  --sidebar-foreground: 210 20% 98%; /* #F9FAFB */
+  --sidebar-primary: 213 94% 68%; /* #60A5FA */
+  --sidebar-primary-foreground: 222 40% 11%; /* #111827 */
+  --sidebar-accent: 220 27% 17%; /* #1F2937 */
+  --sidebar-accent-foreground: 210 20% 98%; /* #F9FAFB */
+  --sidebar-border: 220 9% 34%; /* #4B5563 */
+  --sidebar-ring: 213 94% 68%; /* #60A5FA */
+}
+
+.athletic {
+  --background: 240 5% 96%; /* #F4F4F5 */
+  --foreground: 0 0% 7%; /* #111111 */
+  --muted: 240 6% 34%; /* #52525B */
+  --muted-foreground: 240 6% 34%; /* #52525B */
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 0 0% 7%; /* #111111 */
+  --card: 0 0% 98%; /* #FAFAFA */
+  --card-foreground: 0 0% 7%; /* #111111 */
+  --border: 240 6% 84%; /* #D4D4D8 */
+  --input: 0 0% 100%; /* #FFFFFF */
+  --primary: 0 84% 60%; /* #EF4444 */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --secondary: 158 76% 39%; /* #10B981 */
+  --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+  --accent: 0 72% 50%; /* #DC2626 */
+  --accent-foreground: 0 0% 100%; /* #FFFFFF */
+  --destructive: 0 72% 50%; /* #DC2626 */
+  --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+  --ring: 0 84% 60%; /* #EF4444 */
+
+  /* Sidebar variables for athletic theme */
+  --sidebar-background: 0 0% 100%; /* #FFFFFF */
+  --sidebar-foreground: 0 0% 7%; /* #111111 */
+  --sidebar-primary: 0 84% 60%; /* #EF4444 */
+  --sidebar-primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --sidebar-accent: 240 5% 96%; /* #F4F4F5 */
+  --sidebar-accent-foreground: 0 0% 7%; /* #111111 */
+  --sidebar-border: 240 6% 84%; /* #D4D4D8 */
+  --sidebar-ring: 0 84% 60%; /* #EF4444 */
+
+  /* Chart colors for athletic theme */
+  --chart-1: 0 84% 60%; /* #EF4444 */
+  --chart-2: 158 76% 39%; /* #10B981 */
+  --chart-3: 38 92% 50%; /* #F59E0B */
+  --chart-4: 217 91% 60%; /* #3B82F6 */
+  --chart-5: 262 83% 66%; /* #8B5CF6 */
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: hsl(var(--background));
+    border: none !important;
+    border-color: transparent !important;
+  }
+  
+  html, body, #root {
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Custom selection style */
+  ::selection {
+    background-color: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .mobile-container {
+    @apply max-w-sm mx-auto bg-white dark:bg-card min-h-screen relative overflow-hidden;
+  }
+  
+  .bottom-nav-padding {
+    @apply pb-20;
+  }
+  
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+  }
+  
+  .exercise-category-icon {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center text-lg;
+  }
+  
+  .progress-bar {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-full h-2 overflow-hidden;
+  }
+  
+  .progress-bar-fill {
+    @apply h-full rounded-full transition-all duration-300 ease-out;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .dark .glass-effect {
+    background: rgba(15, 23, 42, 0.9);
+  }
+}
+
+/* Force all borders to use the theme border color and prevent yellow borders */
+*, *::before, *::after {
+  border-color: hsl(var(--border)) !important;
+  outline-color: hsl(var(--border)) !important;
+}
+
+/* Force the background color everywhere to prevent unwanted yellow backgrounds */
+html, body, #root {
+  background: hsl(var(--background)) !important;
+}
+
+/* Strongest possible background color override to prevent yellow backgrounds */
+body, html, #root, :root {
+  background-color: hsl(var(--background)) !important;
+  background: hsl(var(--background)) !important;
+}
+
+/* Remove any yellow highlights or outlines */
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove yellow autofill background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px hsl(var(--background)) inset !important;
+  -webkit-text-fill-color: hsl(var(--foreground)) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
