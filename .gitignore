@@ -61,3 +61,6 @@ coverage/
 
 # Optional stylelint cache
 .stylelintcache
+
+# Memory folder
+memory/
