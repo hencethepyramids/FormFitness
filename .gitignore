@@ -63,4 +63,19 @@ coverage/
 .stylelintcache
 
 # Memory folder
+memory/client_secret_*.json
+
+# Ignore memory folder
 memory/
+
+# Ignore checklist files
+*.checklist
+checklist.*
+*.md.checklist
+
+# Ignore development files
+*.dev
+*.development
+*.local
+*.test
+*.log
