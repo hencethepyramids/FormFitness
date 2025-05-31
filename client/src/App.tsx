@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useState, useEffect } from "react";
+import { UserProvider, useUser } from "./context/UserContext";
 
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
@@ -51,22 +52,8 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 function Router() {
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, loading } = useUser();
   const [location] = useLocation();
-
-  useEffect(() => {
-    // Check if user is logged in
-    fetch('/api/auth/current-user')
-      .then(res => res.json())
-      .then(data => {
-        setUser(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []);
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
@@ -98,12 +85,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
+      <UserProvider>
+        <ThemeProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </ThemeProvider>
+      </UserProvider>
     </QueryClientProvider>
   );
 }

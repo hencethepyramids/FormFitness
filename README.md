@@ -47,10 +47,10 @@ npm install @supabase/supabase-js
 ```
 
 ### 3. Set up environment variables
-Create a `.env` file in the project root:
+Create a `.env` file in the project root (this file is gitignored for security):
 ```env
-SUPABASE_URL=https://kjfsyanuttobhhtqgavr.supabase.co
-SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_URL=https://kjfsyanuttobhhtqgavr.supabase.co
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 SUPABASE_JWT_SECRET=your_supabase_jwt_secret
 DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.kjfsyanuttobhhtqgavr.supabase.co:5432/postgres
@@ -61,8 +61,8 @@ Create `client/src/lib/supabase.ts`:
 ```ts
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 ```

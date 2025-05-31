@@ -18,4 +18,6 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
+  // Add this line:
+  envDir: path.resolve(import.meta.dirname),
 });
