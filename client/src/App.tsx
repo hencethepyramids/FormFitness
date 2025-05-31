@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -13,6 +13,7 @@ import Nutrition from "@/pages/nutrition";
 import Profile from "@/pages/profile";
 import ExerciseDetail from "@/pages/exercise-detail";
 import WorkoutSession from "@/pages/workout-session";
+import { Login } from "@/pages/Login";
 
 import BottomNavigation from "@/components/bottom-navigation";
 
@@ -50,9 +51,36 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 function Router() {
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [location] = useLocation();
+
+  useEffect(() => {
+    // Check if user is logged in
+    fetch('/api/auth/current-user')
+      .then(res => res.json())
+      .then(data => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
+  // If user is not logged in and not on login page, redirect to login
+  if (!user && location !== '/login') {
+    return <Login />;
+  }
+
   return (
     <div className="mobile-container">
       <Switch>
+        <Route path="/login" component={Login} />
         <Route path="/" component={Home} />
         <Route path="/workouts" component={Workouts} />
         <Route path="/progress" component={ProgressPage} />
@@ -62,7 +90,7 @@ function Router() {
         <Route path="/workout-session/:id?" component={WorkoutSession} />
         <Route component={NotFound} />
       </Switch>
-      <BottomNavigation />
+      {user && <BottomNavigation />}
     </div>
   );
 }

@@ -10,6 +10,9 @@ import {
   insertNutritionEntrySchema,
   insertUserStatsSchema
 } from "@shared/schema";
+import passport from 'passport';
+import express from 'express';
+import { hashPassword, generateToken } from './auth';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -352,6 +355,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch dashboard stats" });
     }
+  });
+
+  // Google Auth Routes
+  app.get('/api/auth/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] })
+  );
+
+  app.get('/api/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+      res.redirect('/');
+    }
+  );
+
+  app.get('/api/auth/logout', (req, res) => {
+    req.logout(() => {
+      res.redirect('/');
+    });
+  });
+
+  app.get('/api/auth/current-user', (req, res) => {
+    res.json(req.user || null);
+  });
+
+  // Email/Password Sign Up
+  app.post('/api/auth/signup', async (req, res) => {
+    try {
+      const { email, password, displayName } = req.body;
+      const hashedPassword = await hashPassword(password);
+      // TODO: Save user to database
+      // const user = await db.createUser({ email, password: hashedPassword, displayName });
+      const user = { id: '1', email, displayName };
+      const token = generateToken(user);
+      res.status(201).json({ user, token });
+    } catch (error) {
+      res.status(400).json({ message: 'Invalid signup data' });
+    }
+  });
+
+  // Email/Password Sign In
+  app.post('/api/auth/signin', passport.authenticate('local', { session: false }), (req, res) => {
+    const token = generateToken(req.user);
+    res.json({ user: req.user, token });
   });
 
   const httpServer = createServer(app);
