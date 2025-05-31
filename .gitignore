@@ -79,3 +79,12 @@ checklist.*
 *.local
 *.test
 *.log
+
+# Supabase secrets and config
+supabase/.env
+supabase/config.toml
+supabase/migrations/
+supabase/seed.sql
+
+# OAuth/Google secrets
+client_secret_*.json

@@ -7,8 +7,7 @@ Form Fitness is a modern, full-stack fitness tracking app designed to help you l
 ## 🚀 Features
 
 ### Current
-- **Google Authentication**: Secure sign-in with your Google account
-- **Email/Password Authentication**: (UI ready, backend in progress)
+- **Supabase Authentication**: Secure sign-in with Google, Apple, or email/password
 - **Workout Logging**: Track exercises, sets, reps, and more
 - **Workout Plans**: Create and manage custom workout plans
 - **Progress Tracking**: Visualize your progress over time
@@ -17,7 +16,6 @@ Form Fitness is a modern, full-stack fitness tracking app designed to help you l
 - **Mobile-Ready UI**: Responsive design for desktop and mobile
 
 ### Coming Soon
-- **Apple ID Authentication**: Sign in with your Apple account (for iOS and web)
 - **Social Features**: Share progress, follow friends, and join challenges
 - **Advanced Analytics**: Deeper insights into your fitness journey
 - **Push Notifications**: Reminders and motivational nudges
@@ -27,9 +25,9 @@ Form Fitness is a modern, full-stack fitness tracking app designed to help you l
 
 ## 🛠️ Tech Stack
 - **Frontend**: React, TypeScript, Tailwind CSS, Wouter
-- **Backend**: Express, TypeScript, Passport.js, Drizzle ORM
-- **Database**: (Configurable, e.g., PostgreSQL)
-- **Authentication**: Passport (Google OAuth, Local), JWT
+- **Backend**: Express, TypeScript, Drizzle ORM
+- **Database**: Supabase (PostgreSQL)
+- **Authentication**: Supabase Auth (Google, Apple, Email/Password)
 - **Other**: Vite, React Query, Radix UI, and more
 
 ---
@@ -45,23 +43,53 @@ cd FormFitness
 ### 2. Install dependencies
 ```bash
 npm install
+npm install @supabase/supabase-js
 ```
 
 ### 3. Set up environment variables
 Create a `.env` file in the project root:
 ```env
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-SESSION_SECRET=your_session_secret
-JWT_SECRET=your_jwt_secret
+SUPABASE_URL=https://kjfsyanuttobhhtqgavr.supabase.co
+SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+SUPABASE_JWT_SECRET=your_supabase_jwt_secret
+DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.kjfsyanuttobhhtqgavr.supabase.co:5432/postgres
 ```
 
-### 4. Start the development server
-```bash
-npm run dev
+### 4. Set up Supabase Auth in your frontend
+Create `client/src/lib/supabase.ts`:
+```ts
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 ```
 
-The app will be available at [http://localhost:5000](http://localhost:5000)
+### 5. Use Supabase Auth in your login/signup UI
+#### Email sign up:
+```ts
+const { user, error } = await supabase.auth.signUp({
+  email: 'user@email.com',
+  password: 'password'
+});
+```
+#### Google sign-in:
+```ts
+await supabase.auth.signInWithOAuth({ provider: 'google' });
+```
+#### Apple sign-in:
+```ts
+await supabase.auth.signInWithOAuth({ provider: 'apple' });
+```
+
+### 6. Remove Passport.js
+- Remove all Passport.js authentication logic and routes from your backend.
+- Use Supabase Auth for all authentication flows.
+
+### 7. Protect backend routes
+- For any backend routes that require authentication, verify the Supabase JWT in the request headers.
 
 ---
 
@@ -76,10 +104,8 @@ Questions, suggestions, or feedback? Open an issue or contact [@hencethepyramids
 ---
 
 ## 📅 Roadmap
-- [x] Google Authentication
+- [x] Supabase Authentication (Google, Apple, Email/Password)
 - [x] Modern, mobile-friendly UI
-- [ ] Email/Password Authentication (backend)
-- [ ] Apple ID Authentication
 - [ ] Social and community features
 - [ ] Native mobile apps
 
